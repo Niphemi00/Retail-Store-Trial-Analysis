@@ -56,7 +56,7 @@ This analysis is completed using Python in Jupyter Notebooks and follows a struc
 
 ---
 
-### **📘 Notebook 2 (Upcoming): Control Store Selection**
+### **📘 Notebook 2: Control Store Selection**
 - Computed Pearson correlations to measure trend similarity  
 - Calculated magnitude distance to measure metric closeness  
 - Ranked candidate control stores for Stores 77, 86, and 88  
