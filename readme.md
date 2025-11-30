@@ -83,7 +83,7 @@ Control stores were ranked, and the best match for each trial store was selected
 
 Output:
 
-* `control_store_mapping.csv`
+* `trial*_*_scores.csv`
 
 ---
 
