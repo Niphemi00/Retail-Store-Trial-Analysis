@@ -1,97 +1,228 @@
-# 🛒 Retail Store Trial Analysis — Data Analytics Project
+# Retail Store Trial Analysis — Data Analytics Project
 
-## 📌 Overview
-This project evaluates the impact of a retail store trial conducted in **Store 77**, **Store 86**, and **Store 88** using real retail transaction data.  
-The goal is to determine whether the trial significantly improved performance compared to similar non-trial (control) stores.
+## Overview
+# README (UPDATED AND FINALIZED): Store Trial Performance Analysis Project
 
-This analysis is completed using Python in Jupyter Notebooks and follows a structured, professional workflow used in real analytics teams.
+## Overview
 
----
+This project evaluates the effectiveness of a retail trial conducted across three trial stores. The business objective was to determine whether the trial produced a measurable and statistically significant uplift in store performance. The analysis identifies which trial stores experienced meaningful improvement and which did not, based on a structured data-science workflow documented across six Jupyter Notebooks.
 
-## 📂 Project Structure
-
-📦 QVI_Store_Trial_Analysis
-│
-├── data/
-│ ├── QVI_data.csv
-│ ├── QVI_monthly_aggregated.csv
-│ ├── controlstore_correlation_scores_top5.csv
-│ ├── controlstore_magnitude_scores_top5.csv
-│
-├── notebooks/
-│ ├── Notebook_1_Data_Preparation.ipynb
-│ ├── Notebook_2_Control_Store_Selection.ipynb
-│ ├── Notebook_3_Trial_vs_Control_Evaluation.ipynb
-│ ├── Notebook_4_Visualizations_and_Insights.ipynb
-│ ├── Notebook_5_Final_Report.ipynb
-│
-├── README.md
-└── requirements.txt
-
+The project follows a clear analytical pipeline: data preparation, control store selection, performance comparison, statistical testing, impact interpretation, and executive reporting. All outputs are reproducible, structured, and suitable for production-level analytic workflows.
 
 ---
 
-## 🎯 Project Objectives
+# 1. Project Purpose
 
-- Prepare and clean raw retail transaction data  
-- Aggregate store performance at monthly granularity  
-- Identify the most similar "control stores" for each trial store  
-- Compare trial vs control during the trial period  
-- Conduct significance testing to measure trial impact  
-- Visualize differences in sales, customers, and transaction patterns  
-- Deliver a final data-driven conclusion on trial effectiveness  
+Retail trials introduce new strategies, promotions, layouts, or operational changes in selected stores. However, trial results are only actionable if the measured changes can be attributed to the trial and not random variation.
 
----
+  - The project aims to answer:
+  - Did the trial significantly increase store sales?
+  - Did customer volume or customer purchasing behavior change?
+  - Are the results statistically reliable and repeatable?
+  - What should leadership conclude from the trial?
 
-## 🧪 Analysis Workflow
-
-### **📘 Notebook 1: Data Preparation**
-- Loaded raw QVI dataset  
-- Cleaned records, removed duplicates, handled missing values  
-- Created key features such as `SPEND` and `YearMonth`  
-- Aggregated store-level monthly metrics:
-  - Total Sales  
-  - Total Customers  
-  - Average Transactions per Customer  
+To achieve this, each trial store was matched with a similar control store, allowing accurate comparison of performance before and during the trial period.
 
 ---
 
-### **📘 Notebook 2: Control Store Selection**
-- Computed Pearson correlations to measure trend similarity  
-- Calculated magnitude distance to measure metric closeness  
-- Ranked candidate control stores for Stores 77, 86, and 88  
-- Selected the optimal control store for each trial store  
+# 2. Data Sources
+
+The analysis uses a QVI dataset containing transactional information. Key fields include:
+
+* Transaction date and time
+* Store ID
+* Customer ID
+* Product quantity and price
+* Transaction value
+
+From these, new aggregated monthly features were engineered:
+
+* Monthly total sales
+* Monthly total customers
+* Monthly transactions per customer
+* Monthly average transaction value
+* A consolidated Year-Month field
+
+These transformations created a dataset suited for store-level time-series evaluation.
 
 ---
 
-### **📘 Notebook 3 (Upcoming): Trial vs Control Evaluation**
-- Defined trial period  
-- Compared trial and control store performance across KPIs  
-- Conducted t-tests for statistical significance  
-- Visualized differences using time-series plots  
+# 3. Analytical Structure (Notebooks 1–6)
+
+The project is divided into six notebooks, each focusing on a specific stage of the workflow.
 
 ---
 
-### **📘 Notebook 4 (Upcoming): Visualizations & Insights**
-- Diagnose pre-trial similarity  
-- Deep visual analysis: sales, customers, transactions  
-- Visual dashboards and charts  
+## Notebook 1: Data Cleaning and Monthly Aggregation
+
+This notebook loads the raw data, cleans the fields, removes irrelevant columns, handles missing values, and derives new variables required for analysis.
+
+Key steps:
+
+* Convert transaction dates to datetime
+* Generate a Year-Month column
+* Aggregate sales, customers, and transaction metrics at the monthly level
+* Export the cleaned and aggregated dataset
+
+Output:
+
+* `QVI_monthly_aggregated.csv`
 
 ---
 
-### **📘 Notebook 5 (Upcoming): Final Report & PDF Export**
-- Executive summary  
-- Detailed findings for each trial store  
-- Statistical conclusions  
-- PDF-ready documentation  
+## Notebook 2: Control Store Selection
+
+Each trial store must be paired with a control store that behaves similarly before the trial. This ensures that any differences observed during the trial can be attributed to the intervention.
+
+Similarity was measured using:
+
+* Pearson correlation (trend similarity)
+* Magnitude distance (performance similarity)
+
+Control stores were ranked, and the best match for each trial store was selected.
+
+Output:
+
+* `control_store_mapping.csv`
 
 ---
 
-## 📊 Key Metrics Explained
+## Notebook 3: Trial vs. Control Statistical Testing
 
-- **Total Sales:** Total spending per month  
-- **Total Customers:** Number of unique customers  
-- **Average Transactions per Customer:** Frequency of purchasing behavior  
+This notebook compares each trial store with its assigned control store across the trial period.
+
+Steps performed:
+
+* Extract pre-trial and trial windows
+* Compare key performance metrics:
+
+  * Total sales
+  * Total customers
+  * Average transactions per customer
+* Conduct statistical tests:
+
+  * Two-sample t-tests
+  * Permutation tests
+
+This provides a rigorous method to check whether observed differences are meaningful rather than random.
+
+Output:
+
+* `trial_vs_control_results_YYYY_YY.csv`
+
+---
+
+## Notebook 4: Final Significance Assessment and Results Consolidation
+
+This notebook integrates statistical results and produces final significance labels.
+
+Metrics included:
+
+* Mean performance differences
+* Test statistics and p-values
+* Permutation-based probability estimates
+* Impact classification (significant or not)
+
+Output:
+
+* `notebook4_final_results.csv`
+
+---
+
+## Notebook 5: Drivers of Impact
+
+This stage explains why certain stores showed impact and others did not.
+
+Analysis includes:
+
+* Whether performance uplift was driven by more customers or increased purchasing behavior
+* Differences in average basket size and transaction frequency
+* Store-specific insights that help the business refine strategy
+
+Output:
+
+* `notebook5_store_impact_summary.csv`
+
+---
+
+## Notebook 6: Executive Summary and Recommendations
+
+This notebook consolidates the results into a clear, business-oriented report. It explains the overall trial outcome, which stores demonstrated significant improvement, and what actions are recommended.
+
+Contents include:
+
+* Statistical conclusions per store
+* Interpretation of effect sizes
+* High-level business implications
+* Suggested next steps for the company
+
+Output:
+
+* `notebook6_executive_summary.txt`
+
+---
+
+# 4. Key Findings
+
+* Some trial stores demonstrated statistically significant uplift in sales and customer behavior.
+* Not all stores responded positively to the trial, indicating that the intervention’s effectiveness varies based on store characteristics.
+* In successful stores, uplift was caused either by increased customer traffic or by higher spending per customer.
+* Statistical testing confirmed which changes were meaningful and which were within expected natural variation.
+
+---
+
+# 5. Methodological Strengths
+
+This project demonstrates the use of:
+
+* Time-series aggregation
+* Similarity scoring for experimental design
+* Causal inference principles
+* Inferential statistics (t-tests, permutation tests)
+* Effect size interpretation
+* Data-driven story communication
+
+It represents a complete A–Z trial analysis pipeline suitable for real-world retail analytics.
+
+---
+
+# 6. Repository Structure
+
+```
+/data
+    Raw and processed datasets
+
+/notebooks
+    Notebook 1 – Data Cleaning
+    Notebook 2 – Control Store Selection
+    Notebook 3 – Statistical Testing
+    Notebook 4 – Final Results
+    Notebook 5 – Drivers of Change
+    Notebook 6 – Executive Summary
+
+/outputs
+    Aggregated monthly dataset
+    Control store mapping
+    Trial vs control performance comparisons
+    Final significance results
+    Impact driver summaries
+    Executive summary report
+
+README.md (this file)
+```
+
+---
+
+# 7. Project Outcomes
+
+This project provides a reproducible framework that helps leadership:
+
+* Assess trial effectiveness clearly and objectively
+* Identify which stores warrant rollout
+* Understand why certain stores perform differently
+* Improve the design of future retail trials
+
+The analysis supports evidence-based decision-making and reduces uncertainty in strategic initiatives.
 
 ---
 

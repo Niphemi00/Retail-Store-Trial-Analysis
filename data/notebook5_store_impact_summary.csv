@@ -1,0 +1,4 @@
+trial_store,control_store,sales_diff,customers_diff,avgtx_diff,final_verdict,dominant_driver,insight
+77,167,75.10000000000002,3.666666666666664,0.0203333333333335,Trial Impact Confirmed,Customers,"Store 77 showed a confirmed trial impact. Sales increased by 75.10, mainly driven by higher customers."
+86,159,886.0000000000001,101.33333333333331,0.2159999999999999,No Strong Evidence,Customers,Store 86 did not show strong statistical evidence of a trial impact. Sales difference was 886.00.
+88,159,1372.85,123.33333333333331,0.2433333333333334,Trial Impact Confirmed,Customers,"Store 88 showed a confirmed trial impact. Sales increased by 1372.85, mainly driven by higher customers."
